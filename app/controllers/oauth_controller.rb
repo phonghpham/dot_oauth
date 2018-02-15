@@ -3,10 +3,7 @@ class OauthController < ApplicationController
 
   def show
     @company_name = company_name
-    @auth_url = oauth_client.auth_code.authorize_url(
-      redirect_uri: DOTLOOP_CONFIG['redirect_uri'],
-      scope: DOTLOOP_CONFIG['scope'], 
-      state: @company_name)
+    @auth_url = oauth_client.authorize_url_with_state(@company_name)
   end
 
   def callback
@@ -17,11 +14,7 @@ class OauthController < ApplicationController
   private
 
   def oauth_client
-    @_oauth_client ||= Oauth2::Client.new(
-      DOTLOOP_CONFIG['client_id'],
-      Rails.application.secrets.dotloop_secret_key,
-      site: DOTLOOP_CONFIG['site'], 
-      authorize_url: DOTLOOP_CONFIG['authorize_url'])    
+    @_oauth_client ||= DotloopClient.new(DOTLOOP_CONFIG, 'authorize')  
   end
 
   def company_name
