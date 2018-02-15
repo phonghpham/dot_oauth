@@ -1,0 +1,20 @@
+default: &default
+  client_id: 651777d0-5935-4270-aeb4-cbfe3e1021e7
+  api_site: https://api-gateway.dotloop.com/public/v2
+  auth_site: https://auth.dotloop.com/
+  redirect_uri: http://localhost:3000/oauth/callback
+  scope: profile.read loop.read
+  authorize_url: oauth/authorize
+
+development:
+  <<: *default
+
+production:
+  client_id: 
+  api_site: https://api-gateway.dotloop.com/public/v2
+  auth_site: https://auth.dotloop.com/
+  redirect_uri: 
+  scope: profile.read loop.read
+  authorize_url: oauth/authorize
+test:
+  <<: *default
