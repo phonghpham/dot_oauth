@@ -7,6 +7,7 @@ class OauthController < ApplicationController
   end
 
   def callback
+    byebug
     code = callback_params['code']
     token = oauth_client.auth_code.get_token()
   end

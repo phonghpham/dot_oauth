@@ -3,7 +3,7 @@ default: &default
   api_site: https://api-gateway.dotloop.com/public/v2
   authorize_site: https://auth.dotloop.com
   redirect_uri: http://localhost:3000/oauth/callback
-  scope: profile.read loop.read
+  scope: profile:read loop:read
   authorize_url: oauth/authorize
 
 development:
